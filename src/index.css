@@ -17,21 +17,23 @@ body {
 #root {
   height: 100%;
   width: 100%;
-  background-image: url("https://pixabay.com/get/g33f971244b048de17083c8ac3f4ea136c0a76de172c9c9d61ad2244ad7a9c28c14d6fb7a8b9ee100ec7524f892e4622c.svg");
-  background-size: cover;
-  background-position: center;
+   background-size: cover;
+   background-image: url("assets/eyeglasses-8227429_1920.jpg");
+   background-position: center;
   background-repeat: no-repeat;
+  /* opacity: 0.5; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .form-div {
-  height: 80%;
+  height: 70%;
   width: 90%;
   max-width: 600px;
-  background-color: rgba(103, 82, 60, 0.151);
-  border: 1px solid rgb(227, 220, 220);
+   background-color: rgba(28, 23, 17, 0.443); 
+   border: 1px solid rgb(227, 220, 220); 
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -54,7 +56,7 @@ body {
   width: 100%;
 }
 
-.form-div > div > input {
+.form-div > div > input ,button{
   width: 100%;
   max-width: 300px;
   height: 40px;
@@ -95,7 +97,7 @@ body {
 /* Desktops */
 @media screen and (min-width: 1025px) {
   .form-div {
-    height: 50%;
-    width: 50%;
+    height: 70%;
+    width: 70%;
   }
 }
