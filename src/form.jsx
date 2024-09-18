@@ -247,8 +247,9 @@ let country = [
   { country: "Zimbabwe", flag: "🇿🇼" },
 ];
 // let countryChange;
-function Form( ) {
+function Form() {
   const [checkCountryChg, updateCountry] = useState(generateCountry());
+  const [timerCount,updateTimerCount]=useState(0)
   // const [currOption,setCurrOption]=useState("")
   // console.log(checkCountryChg);
   function generateCountry() {
@@ -260,18 +261,20 @@ function Form( ) {
   function handleClick(event) {
     // console.log("clicked");
     // console.log(inputValue)
-    const val1=event.target.textContent.toLowerCase();
-    
-    console.log("val1 :"+val1);
+    const val1 = event.target.textContent.toLowerCase();
+
+    console.log("val1 :" + val1);
     const val2 = checkCountryChg.country.toLowerCase();
-    console.log("val2: "+val2);
-    if ( val2===val1) {
+    console.log("val2: " + val2);
+    if (val2 === val1) {
       console.log("correct");
       updateScore(currScore + 1);
       updateCountry(generateCountry());
-     } else {
+    } else {
       console.log("wrong");
-      alert( `Correct : ${checkCountryChg.country}, Your Total Score : ${currScore}`);
+      alert(
+        `Correct : ${checkCountryChg.country}, Your Total Score : ${currScore}`
+      );
       location.reload();
     }
   }
@@ -283,30 +286,46 @@ function Form( ) {
   // function clearInput() {
   //   setInputVal("");
   // }
-
+  
   function wrongOptionGenerator() {
     let ind = Math.floor(Math.random() * country.length - 1);
     // console.log(ind);
     return country[ind];
   }
-   const buttons=["","","",""]
-   let randomIndex=Math.floor(Math.random()*4);
-   for(let i=0;i<4;i++){
-   
-      console.log(randomIndex)
-      if(i===randomIndex){
-        
-        buttons[i]=<button key={i} onClick={handleClick}>{checkCountryChg.country}</button>
-      }
-      else{
-         buttons[i]=<button  key={i} onClick={handleClick}>{wrongOptionGenerator().country}</button>
-      }
+  const buttons = ["", "", "", ""];
+  let randomIndex = Math.floor(Math.random() * 4);
+  console.log(randomIndex);
+  let ctr=0;
+  
+  // setInterval(()=>{
+  //   updateTimerCount(timerCount+1)
+  // },1000)
+
+
+  for (let i = 0; i < 4; i++) {
+    if (i === randomIndex) {
+      buttons[i] = (
+        <button key={i} onClick={handleClick}>
+          {checkCountryChg.country}
+        </button>
+      );
+    } else {
+      buttons[i] = (
+        <button key={i} onClick={handleClick}>
+          {wrongOptionGenerator().country}
+        </button>
+      );
     }
+  }
+  function handleSkip() {
+    updateCountry(generateCountry());
+  }
   return (
     <div className="form-div">
       {/* <Score /> */}
       {/* step1: Render the country:- */}
       <h1> {checkCountryChg.flag}</h1>
+      {/* <h2>{timerCount}</h2> */}
 
       <div>
         <Score scoreUpdate={currScore} />
@@ -318,19 +337,18 @@ function Form( ) {
           onFocus={clearInput}
         /> */}
         {/* <input type="submit" onClick={handleClick} />  */}
-         
+
         {/* <button onClick={handleClick}>{checkCountryChg.country}</button>
         <button onClick={handleClick}>{wrongOptionGenerator().country}</button>
         <button onClick={handleClick}>{wrongOptionGenerator().country}</button>
         <button onClick={handleClick}>{wrongOptionGenerator().country}</button> */}
 
-        {
-          buttons.map((button)=>{
-
-           return button
-          })
-        }
-
+        {buttons.map((button) => {
+          return button;
+        })}
+        <button className="skipBtn" onClick={handleSkip}>
+          SKIP
+        </button>
       </div>
     </div>
   );

@@ -43,6 +43,10 @@ body {
   padding: 20px;
 }
   
+ .skipBtn{
+   background-color: rgba(255, 0, 0, 0.582);
+ }
+
  h1{
   font-size: 100px;
  }
